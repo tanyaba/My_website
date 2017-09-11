@@ -1,0 +1,44 @@
+{%extends 'bootstrap/base.html'%}
+
+{%block title%}Tanya's website{%endblock%}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cover.css') }}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+{%endblock%}
+
+{% block body %}
+<!--<div class="container-fluid" >-->
+    {% block navbar%}
+        <nav class="navbar" style="top:0; position:fixed">
+
+            <div class="navbar-nav pull-left">
+                <a href="{{url_for('index')}}" class="btn" >Home </a>
+            </div>
+            <div class="navbar-nav pull-right">
+                <a href="{{url_for('contact')}}" class="btn">Contact</a>
+            </div>
+        </nav>
+
+    {%endblock%}
+{%block content%}
+      <!--<div class="container">-->
+         <div class="site-wrapper">
+             <div class="site-wrapper-inner">
+             <div class="cover-container">
+               <div class="inner">
+
+                   {%block page_content%} {%endblock%}
+
+               </div>
+             </div>
+             </div>
+         </div>
+
+
+
+  {%endblock%}
+
+
+{%endblock%}

@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+
+{% block page_content%}
+
+<h1>Cargo Calculator</h1> <br>
+<h3 class="lead">This application calculates the optimal cargo weight in order to maximise the
+    number of items can be loaded onto a vehicle or a ship. It determines the optimal
+    combination  of mixed weight products to utilise the maximum loading capacity. <br>All entries must be
+    integer numbers and in the same units of weight (pounds, lb, kg, tonne).
+</h3> <br>
+    <p class="lead" style="color:#DEB887">Please enter a weight for each item one at a time.
+
+        <form action="{{ url_for('calculator.add_item') }}" method=post id="id">
+                <p><input type="text" name="item"> </p>
+                <p> <input type="submit" value='Submit' ></p>
+        </form>
+    </p>
+
+    <p class="lead" style="color:#DEB887"> Please enter the maximum loading capacity.
+
+        <form action="{{ url_for('calculator.add_capacity') }}" method=post id="id">
+                <p><input type="text" name="capacity"></p>
+                <p ><input type=submit value=Submit ></p>
+        </form>
+    </p>
+
+{% for message in get_flashed_messages() %}
+      <div style="color:#FF8C00; font-size: 16px">{{ message }}</div>
+  {% endfor %}
+
+<p class="lead inner" > <a href="{{url_for('calculator.result')}}" class="btn btn-default">
+    <b>Optimal Cargo Weight</b></a>
+</p>
+
+
+{% if optimal %}
+<h4 style="color:#DEB887"> {{ optimal }} is the optimal weight </h4>
+{% endif %}
+
+
+   <div class="mastfoot">
+        <div class="inner">
+        Click <a href="{{url_for('calculator.new_calculator')}}">here</a> to start new calculation.
+        </div>
+    </div>
+{%endblock%}
+

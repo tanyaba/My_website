@@ -1,0 +1,33 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'base.html' %}
+
+{% block page_content%}
+
+<h1>Majority Counting</h1> <br>
+<h3 class="lead">This application counts the votes and selects the most popular product.
+    A successful product should get more than half of votes.</h3> <br>
+<p class="lead" style="color:#DEB887"> Please select your favorite product</p>
+
+<div> <form action="{{ url_for('majority.add_entry') }}" method=post id="id">
+            <p style="color:#DEB887">Product One <input type="radio" name="select" value="One"></p>
+            <p style="color:#DEB887">Product Two <input type="radio" name="select" value="Two"></p>
+            <p ><input class="btn-default" type=submit value=Submit></p>
+        </form>
+</div>
+{% for message in get_flashed_messages(category_filter=["product"]) %}
+      <div class="product">{{ message }}</div>
+  {% endfor %}
+
+{% if result %}
+<h4 style="color:#DEB887">So far, Product {{ result }} is the popular choice.</h4>
+{% endif %}
+
+
+
+   <div class="mastfoot">
+        <div class="inner">
+        Click <a href="{{url_for('majority.new_count')}}">here</a> to start new counting.
+        </div>
+    </div>
+
+{%endblock%}
